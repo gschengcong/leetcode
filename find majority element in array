@@ -1,0 +1,31 @@
+Problem description:
+  169. Given an array of size n, find the majority element.
+  The majority element is the element that appears more than ⌊ n/2 ⌋ times.
+  You may assume that the array is non-empty and the majority element always exist in the array.
+
+
+class Solution:
+    # @param num, a list of integers
+    # @return an integer
+    def majorityElement(self, num):
+        majority_num = num[0];// initiate
+        count = 0;
+        for x in num:
+            if majority_num == x:
+                count = count + 1
+            else:
+                count = count - 1
+                if count <= 0: 
+                    majority_num = x
+                    count = 1
+        return majority_num
+        
+
+Discussion:
+Apprently, the brute force takes two loops, checking every almost element in the array. Thus, it takes O(n^2) time.
+
+But we can find that, in this problem, the number of majority elements is larger than the sum of other elements in the array.
+And for any other elements, it cannot satisfy this principle.
+
+http://www.geeksforgeeks.org/majority-element/
+
