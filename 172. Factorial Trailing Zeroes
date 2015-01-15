@@ -17,3 +17,7 @@ class Solution:
             k = k - 1
         
         return num_of_zeros
+
+
+Discuss:
+http://en.wikipedia.org/wiki/Trailing_zero
