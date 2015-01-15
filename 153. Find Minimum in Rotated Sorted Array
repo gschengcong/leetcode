@@ -26,3 +26,7 @@ class Solution:
                 rear = mid
                 min_num = num[mid]
         return min_num
+
+Discuss:
+The brute force algorithm checks every element in the array, taking O(n) time.
+We use binary search, so it takes O(logn) time.
