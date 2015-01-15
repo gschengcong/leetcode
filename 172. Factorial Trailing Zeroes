@@ -1,0 +1,19 @@
+172. Factorial Trailing Zeroes 
+Given an integer n, return the number of trailing zeroes in n!.
+
+Note: Your solution should be in logarithmic time complexity.
+
+
+class Solution:
+    # @return an integer
+    def trailingZeroes(self, n):
+        num_of_zeros = 0
+        if n > 0:
+            k = int(math.log(n,5))
+        else:
+            k = 0
+        while k:
+            num_of_zeros = num_of_zeros + int(n/math.pow(5, k))
+            k = k - 1
+        
+        return num_of_zeros
