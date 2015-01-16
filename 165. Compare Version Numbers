@@ -1,0 +1,55 @@
+165. Compare Version Numbers 
+
+Compare two version numbers version1 and version1.
+If version1 > version2 return 1, if version1 < version2 return -1, otherwise return 0.
+
+You may assume that the version strings are non-empty and contain only digits and the . character.
+The . character does not represent a decimal point and is used to separate number sequences.
+For instance, 2.5 is not "two and a half" or "half way to version three", it is the fifth second-level revision of the second first-level revision.
+
+Here is an example of version numbers ordering:
+
+class Solution:
+    # @param version1, a string
+    # @param version2, a string
+    # @return an integer
+    def compareVersion(self, version1, version2):
+        version1 = version1.split(".")
+        version2 = version2.split(".")
+        
+        
+        return self.listcmp(version1, version2)
+    
+    def listcmp(self, list1, list2):
+        i = 0
+        while i < len(list1) and i < len(list2):
+            outcome = cmp(int(list1[i]), int(list2[i]))
+            if outcome:
+                return outcome
+            i = i + 1
+        longer_list = cmp(len(list1), len(list2))
+        
+        if longer_list == 1:
+            while i < len(list1):
+                if int(list1[i]) > 0:
+                    return 1
+                i = i + 1
+            return 0
+                    
+        if longer_list == -1:
+            while i < len(list2):
+                if int(list2[i]) > 0:
+                    return -1
+                i = i + 1
+            return 0
+            
+        if longer_list == 0:
+            return 0
+                    
+
+Discuss:
+
+I first split the version string according to ".", getting a list of strings. The "priority" of strings in the list decreace 
+when index of strings increase. Thus, we can compare strings, of course after using int() because version 2.2 is smaller
+than 2.10, by increase the index of string. From line 30, we should not only think about which string is longer, but also
+the cases like, (1.0, 1)
